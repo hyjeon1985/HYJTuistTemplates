@@ -1,6 +1,6 @@
 import ProjectDescription
 
-private let baseBundleID = "com.yourdomain.sdk.name"
+private let baseBundleID = INPUT_YOUR_SDK_BUNDLE_ID // "com.yourdomain.sdk.name"
 
 private func makeBundleID(with addition: String? = nil) -> String {
     
