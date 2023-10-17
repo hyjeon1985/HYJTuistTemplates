@@ -1,0 +1,16 @@
+import ProjectDescription
+
+public enum External: String {
+    case tca = "ComposableArchitecture"
+}
+
+public extension ProjectDescription.TargetDependency {
+
+    static func external(_ moduleName: String) -> ProjectDescription.TargetDependency {
+        .external(name: moduleName)
+    }
+
+    static func external(_ module: External) -> ProjectDescription.TargetDependency {
+        .external(module.rawValue)
+    }
+}

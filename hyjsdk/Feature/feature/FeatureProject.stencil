@@ -1,0 +1,22 @@
+import ProjectDescription
+import ProjectDescriptionHelpers
+
+// {{ name|lowerFirstWord }} Feature Module
+let project = Project(
+    name: Feature.{{ name|lowerFirstWord }}.rawValue,
+    targets: [
+        .feature(
+            interface: .{{ name|lowerFirstWord }},
+            dependencies: [
+                .common
+            ]
+        ),
+        .feature(
+            implementation: .{{ name|lowerFirstWord }},
+            dependencies: [
+                .common,
+                .feature(interface: .{{ name|lowerFirstWord }}),
+            ]
+        )
+    ]
+)

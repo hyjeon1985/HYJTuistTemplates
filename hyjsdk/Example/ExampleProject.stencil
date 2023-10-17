@@ -1,0 +1,10 @@
+import ProjectDescription
+import ProjectDescriptionHelpers
+
+// Example Module
+let project = Project(
+    name: Product.example.rawValue,
+    targets: [
+        .makeExample()
+    ]
+)

@@ -1,0 +1,17 @@
+import ProjectDescription
+
+let nameAttribute: Template.Attribute = .required("name")
+
+let template = Template(
+    description: "Feature template",
+    attributes: [
+        nameAttribute
+    ], items: [
+        .file(
+            path: "{{ name }}/\(nameAttribute)/Project.swift",
+            templatePath: "FeatureProject.stencil"
+        ),
+        .string(path: "{{ name }}/\(nameAttribute)/Sources/Implementation.swift", contents: "// Feature Module \(nameAttribute)\nimport Foundation"),
+        .string(path: "{{ name }}/\(nameAttribute)/interfaces/Interface.swift", contents: "// Feature Module \(nameAttribute)\nimport Foundation")
+    ]
+)

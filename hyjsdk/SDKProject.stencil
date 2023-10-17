@@ -1,0 +1,12 @@
+import ProjectDescription
+import ProjectDescriptionHelpers
+
+// SDK Module
+let project = Project(
+    name: Product.sdk.rawValue,
+    targets: [
+        .makeSDK(
+            dependencies: []
+        )
+    ]
+)

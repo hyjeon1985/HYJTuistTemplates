@@ -1,0 +1,14 @@
+import ProjectDescription
+import ProjectDescriptionHelpers
+
+// Common Feature Module
+let project = Project(
+    name: Feature.common.rawValue,
+    targets: [
+        .feature(
+            implementation: .common,
+            dependencies: [],
+            resources: ["Resources/**"]
+        )
+    ]
+)
