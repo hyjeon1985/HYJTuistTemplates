@@ -7,7 +7,7 @@ public enum {{ name }}Error: CustomError {
     case sample
     
     public var errorDomain: String {
-        return "\(Bundle.main.bundleIdentifier).{{ name|lowercase }}.error"
+        return "\(Bundle.main.bundleIdentifier ?? "").{{ name|lowercase }}.error"
     }
 
     public var errorCode: Int {
