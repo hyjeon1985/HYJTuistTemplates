@@ -1,0 +1,21 @@
+import ProjectDescription
+import ProjectDescriptionHelpers
+
+// App Module
+let project = Project(
+    name: "{{ name }}",
+    settings: appSettings,
+    targets: [
+        .makeApp(
+            dependencies: [
+//                .feature(implementation: .sample),
+//                .feature(interface: .sample),
+            ]
+        )
+    ],
+    schemes: [
+        appSchemeDev,
+        appSchemeStg,
+        appSchemePrd
+    ]
+)

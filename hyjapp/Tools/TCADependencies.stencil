@@ -1,0 +1,20 @@
+import ProjectDescription
+import ProjectDescriptionHelpers
+
+let spmDeps = SwiftPackageManagerDependencies(
+    [
+        .remote(url: "https://github.com/pointfreeco/swift-composable-architecture",
+                requirement: .upToNextMinor(from: "1.2.0")),
+    ],
+    productTypes: [
+        //"TCA"
+        External.tca.rawValue: ProjectDescriptionHelpers.defaultPackageType,
+    ]
+)
+
+let dependencies = Dependencies(
+    swiftPackageManager: spmDeps,
+    platforms: [
+        .iOS
+    ]
+)

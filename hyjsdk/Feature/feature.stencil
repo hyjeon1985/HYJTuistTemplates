@@ -12,6 +12,6 @@ let template = Template(
             templatePath: "FeatureProject.stencil"
         ),
         .string(path: "{{ name }}/\(nameAttribute)/Sources/Implementation.swift", contents: "// Feature Module \(nameAttribute)\nimport Foundation"),
-        .string(path: "{{ name }}/\(nameAttribute)/interfaces/Interface.swift", contents: "// Feature Module \(nameAttribute)\nimport Foundation")
+        .string(path: "{{ name }}/\(nameAttribute)/Interfaces/Interface.swift", contents: "// Feature Module \(nameAttribute)\nimport Foundation")
     ]
 )

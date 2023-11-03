@@ -1,0 +1,31 @@
+import ProjectDescription
+
+//public enum XCFramework: String {
+//    case rxSwift = "RXSwift"
+//    case rxCocoa = "RxCocoa"
+//}
+
+
+public enum External: String {
+    case texture = "AsyncDisplayKit"
+    case tca = "ComposableArchitecture"
+}
+
+public extension ProjectDescription.TargetDependency {
+
+    //static func xcFramework(_ moduleName: String) -> ProjectDescription.TargetDependency {
+    //    .xcFramework(path: "Frameworks/\(moduleName).xcframework")
+    //}
+
+    //static func xcFramework(_ module: XCFramework) -> ProjectDescription.TargetDependency {
+    //    .xcFramework(module.rawValue)
+    //}
+
+    static func external(_ moduleName: String) -> ProjectDescription.TargetDependency {
+        .external(name: moduleName)
+    }
+
+    static func external(_ module: External) -> ProjectDescription.TargetDependency {
+        .external(module.rawValue)
+    }
+}

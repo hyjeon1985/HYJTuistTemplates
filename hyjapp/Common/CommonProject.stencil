@@ -1,0 +1,17 @@
+import ProjectDescription
+import ProjectDescriptionHelpers
+
+// Common Feature Module
+let project = Project(
+    name: Feature.common.rawValue,
+    settings: defaultSettings,
+    targets: [
+        .feature(
+            implementation: .common,
+            dependencies: [
+                .sdk(name: "UIKit", type: .framework, status: .required),
+            ],
+            hasResources: true
+        )
+    ]
+)

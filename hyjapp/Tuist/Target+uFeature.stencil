@@ -1,0 +1,98 @@
+import ProjectDescription
+
+private func makeBundleID(with addition: String? = nil) -> String {
+    
+    let baseBundleID = "$(BASE_BUNDLE_ID)"
+    
+    
+    guard let addition = addition, !addition.isEmpty else {
+        return baseBundleID
+    }
+    let lowercased = addition.lowercased()
+    return baseBundleID + "." + lowercased
+}
+
+public extension Target {
+    static func makeApp(
+        dependencies: [ProjectDescription.TargetDependency]
+    ) -> Target {
+        var deps: [ProjectDescription.TargetDependency] = [.common]
+        deps.append(contentsOf: dependencies)
+        return Target(
+            name: "{{ name }}",
+            platform: .iOS,
+            product: .app,
+            bundleId: makeBundleID(),
+            deploymentTarget: .iOS(targetVersion: "14.0", devices: .iphone),
+            infoPlist: .extendingDefault(with: appInfoPlist),
+            sources: ["Sources/**"],
+            resources: ["Resources/**"],
+            dependencies: deps,
+            settings: appSettings
+        )
+    }
+    
+    private static func makeFeature(
+        name: String,
+        sources: ProjectDescription.SourceFilesList,
+        dependencies: [ProjectDescription.TargetDependency] = [],
+        resources: ProjectDescription.ResourceFileElements? = []
+    ) -> Target {
+        Target(
+            name: name,
+            platform: .iOS,
+            product: defaultPackageType,
+            bundleId: makeBundleID(with: name),
+            deploymentTarget: .iOS(targetVersion: "11.0", devices: .iphone),
+            sources: sources,
+            resources: resources,
+            dependencies: dependencies,
+            settings: defaultSettings
+        )
+    }
+
+    private static func feature(
+        implementation featureName: String,
+        dependencies: [ProjectDescription.TargetDependency] = [],
+        resources: ProjectDescription.ResourceFileElements? = []
+    ) -> Target {
+        .makeFeature(
+            name: featureName,
+            sources: [ "Sources/**" ],
+            dependencies: dependencies,
+            resources: resources
+        )
+    }
+
+    private static func feature(
+        interface featureName: String,
+        dependencies: [ProjectDescription.TargetDependency] = []
+    ) -> Target {
+        .makeFeature(
+            name: featureName + "Interface",
+            sources: [ "Interfaces/**" ],
+            dependencies: dependencies
+        )
+    }
+    static func feature(
+        implementation feature: Feature,
+        dependencies: [ProjectDescription.TargetDependency] = [],
+        hasResources: Bool = false
+    ) -> Target {
+        .feature(
+            implementation: feature.rawValue,
+            dependencies: dependencies,
+            resources: hasResources ? ["Resources/**"] : []
+        )
+    }
+
+    static func feature(
+        interface feature: Feature,
+        dependencies: [ProjectDescription.TargetDependency] = []
+    ) -> Target {
+        .feature(
+            interface: feature.rawValue,
+            dependencies: dependencies
+        )
+    }
+}

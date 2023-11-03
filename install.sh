@@ -32,7 +32,11 @@ if ! command -v tuist &> /dev/null; then
 fi
 
 # Tuist 설치된 버전 확인
-tuist_version=$(tuist local | awk 'END{print $NF}')
+if tuist version &> /dev/null; then
+    tuist_version=$(tuist version | awk 'END{print $NF}')
+else
+    tuist_version=$(tuist local | awk 'END{print $NF}')
+fi
 
 # 템플릿 경로 설정
 templates_path="$user_home/.tuist/Versions/$tuist_version/Templates"

@@ -1,0 +1,17 @@
+import ProjectDescription
+
+public let appInfoPlist: [_: Plist.Value] = [
+    "UIMainStoryboardFile": "",
+    "UILaunchStoryboardName": "LaunchScreen",
+    "CFBundleDisplayName": "$(APP_NAME)",
+    "CFBundleName": "$(APP_NAME)",
+    "UIBackgroundModes": [],
+    "UISupportedInterfaceOrientations": ["UIInterfaceOrientationPortrait"],
+    "UISupportedInterfaceOrientations-ipad": ["UIInterfaceOrientationPortrait"],
+    "UIUserInterfaceStyle": "Light",
+    "NSCameraUsageDescription": "Enable camera access so that others can see you during video calls.",
+    "NSMicrophoneUsageDescription": "Enable microphone access so that others can hear you.",
+    "NSPhotoLibraryUsageDescription": "Grant access to your photo library for selecting and uploading photos.",
+    "NSUserTrackingUsageDescription": "We use your data to provide personalized experiences and ads, as well as to analyze our app's performance and improve it.",
+]
+

@@ -1,5 +1,5 @@
 //
-//  sdk.swift
+//  hyjapp.swift
 //  ProjectDescriptionHelpers
 //
 //  Created by Hoyeol Jeon on 10/16/23.
@@ -13,8 +13,7 @@ let workspacePath = "."
 
 let helperPath = "Tuist/ProjectDescriptionHelpers"
 let templatesPath = "Tuist/Templates"
-let examplePath = "\(nameAttribute)/Example"
-let sdkPath = "\(nameAttribute)/SDK"
+let appPath = "\(nameAttribute)/\(nameAttribute)"
 let commonPath = "\(nameAttribute)/Common"
 
 func toolPath(_ path: String) -> Path {
@@ -36,20 +35,32 @@ func templateItems() -> [Template.Item] {
             templatePath: "Tuist/Project+BuildType.stencil"
         ),
         .file(
+            path: helperPath + "/Project+Configurations.swift",
+            templatePath: "Tuist/Project+Configurations.stencil"
+        ),
+        .file(
+            path: helperPath + "/Project+Dependency.swift",
+            templatePath: "Tuist/Project+Dependency.stencil"
+        ),
+        .file(
             path: helperPath + "/Project+InfoPlist.swift",
             templatePath: "Tuist/Project+InfoPlist.stencil"
         ),
         .file(
-            path: helperPath + "/Target+uFeature.swift",
-            templatePath: "Tuist/Target+uFeature.stencil"
+            path: helperPath + "/Project+Schemes.swift",
+            templatePath: "Tuist/Project+Schemes.stencil"
+        ),
+        .file(
+            path: helperPath + "/Project+Settings.swift",
+            templatePath: "Tuist/Project+Settings.stencil"
         ),
         .file(
             path: helperPath + "/Project+uFeature.swift",
             templatePath: "Tuist/Project+uFeature.stencil"
         ),
         .file(
-            path: helperPath + "/Project+Dependency.swift",
-            templatePath: "Tuist/Project+Dependency.stencil"
+            path: helperPath + "/Target+uFeature.swift",
+            templatePath: "Tuist/Target+uFeature.stencil"
         ),
 
 
@@ -75,40 +86,30 @@ func templateItems() -> [Template.Item] {
             templatePath: toolPath("EmptyConfig.stencil")
         ),
 
-        // Example
+        // App
         .file(
-            path: examplePath + "/Project.swift",
-            templatePath: "Example/ExampleProject.stencil"
+            path: appPath + "/Project.swift",
+            templatePath: "App/AppProject.stencil"
         ),
         .file(
-            path: examplePath + "/Sources/ExampleApp.swift",
-            templatePath: "Example/ExampleApp.stencil"
+            path: appPath + "/Sources/{{ name }}App.swift",
+            templatePath: "App/App.stencil"
         ),
         .file(
-            path: examplePath + "/Sources/ContentView.swift",
+            path: appPath + "/Sources/ContentView.swift",
             templatePath: toolPath("ContentView.stencil")
         ),
         .file(
-            path: examplePath + "/Resources/LaunchScreen.storyboard",
+            path: appPath + "/Resources/LaunchScreen.storyboard",
             templatePath: toolPath("LaunchScreen.stencil")
         ),
         .directory(
-            path: examplePath + "/Resources",
+            path: appPath + "/Resources",
             sourcePath: toolPath("Assets.xcassets")
         ),
         .directory(
-            path: examplePath + "/Resources",
+            path: appPath + "/Resources",
             sourcePath: toolPath("Preview Content")
-        ),
-            
-        // SDK
-        .file(
-            path: sdkPath + "/Project.swift",
-            templatePath: "SDKProject.stencil"
-        ),
-        .file(
-            path: sdkPath + "/Sources/\(nameAttribute).swift",
-            templatePath: "Namespace.stencil"
         ),
         
         // Common
@@ -140,7 +141,7 @@ func templateItems() -> [Template.Item] {
 
 
 let template = Template(
-    description: "SDK Workspace Template... The Micro Feature Architecture is adopted.",
+    description: "App Workspace Template... The Micro Feature Architecture is adopted.",
     attributes: [
         nameAttribute
     ],

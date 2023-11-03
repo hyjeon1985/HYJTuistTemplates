@@ -1,0 +1,35 @@
+import Foundation
+import Common
+
+extension UserDefaults {
+    enum Key: String, CaseIterable {
+        case sampleData
+        // case sampleObject
+
+        var value: String { "\(Bundle.main.bundleIdentifier ?? "").{{ name|lowercase }}.\(self.rawValue.lowercased())" }
+    }
+}
+
+extension UserDefaults {
+    var sampleData: Data? {
+        get { UserDefaults.standard.value(forKey: Key.sampleData.value) as? Data }
+        set { UserDefaults.standard.set(newValue, forKey: Key.sampleData.value) }
+    }
+    
+    // var sample: SampleObject? {
+    //     get {
+    //         UserDefaults.standard.get(objectType: SampleObject.self, forKey: Key.sampleObject.value)
+    //     }
+    //     set {
+    //         UserDefaults.standard.set(object: newValue, forKey: Key.sampleObject.value)
+    //     }
+    // }
+}
+
+extension UserDefaults {
+    func clear() {
+        Key.allCases
+            .map { $0.value }
+            .forEach(UserDefaults.standard.removeObject)
+    }
+}

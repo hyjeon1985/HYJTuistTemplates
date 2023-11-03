@@ -1,0 +1,28 @@
+import ProjectDescription
+
+private let baseSettingsDict: SettingsDictionary = [
+    "CODE_SIGN_STYLE": "Automatic",
+    "DEVELOPMENT_TEAM": "$(TEAM_ID)",
+    "CURRENT_PROJECT_VERSION": "1",
+    "MARKETING_VERSION": "1.0",
+    "SUPPORTED_PLATFORMS": "iphoneos iphonesimulator",
+    "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO", 
+]
+
+public let appSettings: Settings = .settings(
+    base: baseSettingsDict,
+    configurations: [
+        appConfigDev,
+        appConfigStg,
+        appConfigPrd
+    ]
+)
+
+public let defaultSettings: Settings = .settings(
+    base: baseSettingsDict,
+    configurations: [
+        defaultConfigDev,
+        defaultConfigStg,
+        defaultConfigPrd
+    ]
+)

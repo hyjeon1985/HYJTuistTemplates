@@ -1,0 +1,32 @@
+import Foundation
+import Common
+
+public enum {{ name }}Error: CustomError {
+    
+    case common(error: CommonError)
+    case sample
+    
+    public var errorDomain: String {
+        return "\(Bundle.main.bundleIdentifier).{{ name|lowercase }}.error"
+    }
+
+    public var errorCode: Int {
+        // 각 오류에 고유한 에러 코드를 지정
+        switch self {
+        case .common(let error):
+            return error.errorCode
+        case .sample:
+            return 2001
+        }
+    }
+
+    public var errorDescription: String {
+        // 각 오류에 대한 설명을 여기에 지정
+        switch self {
+        case .common(let error):
+            return error.errorDescription
+        case .sample:
+            return "Sample error."
+        }
+    }
+}

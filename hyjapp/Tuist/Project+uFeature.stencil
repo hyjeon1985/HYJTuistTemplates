@@ -1,0 +1,33 @@
+import ProjectDescription
+
+public enum Feature: String {
+    case common = "Common"
+}
+
+public extension ProjectDescription.TargetDependency {
+    
+    private static func feature(target: String, featureName: String) -> ProjectDescription.TargetDependency {
+        .project(target: target, path: .relativeToRoot("{{ name }}/" + featureName))
+    }
+
+    private static func feature(interface moduleName: String) -> ProjectDescription.TargetDependency {
+        .feature(target: moduleName + "Interface", featureName: moduleName)
+    }
+
+    private static func feature(implementation moduleName: String) -> ProjectDescription.TargetDependency {
+        .feature(target: moduleName, featureName: moduleName)
+    }
+    
+    static func feature(interface feature: Feature) -> ProjectDescription.TargetDependency {
+        .feature(interface: feature.rawValue)
+    }
+
+    static func feature(implementation feature: Feature) -> ProjectDescription.TargetDependency {
+        .feature(implementation: feature.rawValue)
+    }
+
+    static var common: ProjectDescription.TargetDependency {
+        .feature(implementation: .common)
+    }
+    
+}

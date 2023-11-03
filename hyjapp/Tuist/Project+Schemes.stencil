@@ -1,0 +1,34 @@
+import ProjectDescription
+
+public let appSchemeDev: Scheme = Scheme(
+    name: "{{ name }}-Dev",
+    shared: true,
+    buildAction: .buildAction(targets: [TargetReference(stringLiteral: "{{ name }}")]),
+    testAction: .testPlans([], configuration: .configuration("{{ name }}Dev")),
+    runAction: .runAction(configuration: .configuration("{{ name }}Dev")),
+    archiveAction: .archiveAction(configuration: .configuration("{{ name }}Dev")),
+    profileAction: .profileAction(configuration: .configuration("{{ name }}Dev")),
+    analyzeAction: .analyzeAction(configuration: .configuration("{{ name }}Dev"))
+)
+
+public let appSchemeStg: Scheme = Scheme(
+    name: "{{ name }}-Stg",
+    shared: true,
+    buildAction: .buildAction(targets: [TargetReference(stringLiteral: "{{ name }}")]),
+    testAction: .testPlans([], configuration: .configuration("{{ name }}Stg")),
+    runAction: .runAction(configuration: .configuration("{{ name }}Stg")),
+    archiveAction: .archiveAction(configuration: .configuration("{{ name }}Stg")),
+    profileAction: .profileAction(configuration: .configuration("{{ name }}Stg")),
+    analyzeAction: .analyzeAction(configuration: .configuration("{{ name }}Stg"))
+)
+
+public let appSchemePrd: Scheme = Scheme(
+    name: "{{ name }}-Prd",
+    shared: true,
+    buildAction: .buildAction(targets: [TargetReference(stringLiteral: "{{ name }}")]),
+    testAction: .testPlans([], configuration: .configuration("{{ name }}Prd")),
+    runAction: .runAction(configuration: .configuration("{{ name }}Prd")),
+    archiveAction: .archiveAction(configuration: .configuration("{{ name }}Prd")),
+    profileAction: .profileAction(configuration: .configuration("{{ name }}Prd")),
+    analyzeAction: .analyzeAction(configuration: .configuration("{{ name }}Prd"))
+)

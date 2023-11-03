@@ -1,0 +1,57 @@
+import ProjectDescription
+
+private let _baseBundleId: String = "com.yourdomain.app"
+private let _teamId: String = "XXXXXXXXXX"
+
+let defaultSettingsDev: SettingsDictionary = [
+    "BASE_BUNDLE_ID": "\(_baseBundleId).dev",
+    "TEAM_ID": "\(_teamId)"
+]
+
+let defaultSettingsStg: SettingsDictionary = [
+    "BASE_BUNDLE_ID": "\(_baseBundleId).stg",
+    "TEAM_ID": "\(_teamId)"
+]
+
+let defaultSettingsPrd: SettingsDictionary = [
+    "BASE_BUNDLE_ID": "\(_baseBundleId)",
+    "TEAM_ID": "\(_teamId)"
+]
+
+let defaultConfigDev: Configuration = .debug(name: "{{ name }}Dev", settings: defaultSettingsDev)
+let defaultConfigStg: Configuration = .release(name: "{{ name }}Stg", settings: defaultSettingsStg)
+let defaultConfigPrd: Configuration = .release(name: "{{ name }}Prd", settings: defaultSettingsPrd)
+
+
+let appSettingsDev: SettingsDictionary = {
+    var dict = defaultSettingsDev
+    dict["APP_NAME"] = "{{ name }}(Dev)"
+    return dict
+}()
+
+let appSettingsStg: SettingsDictionary = {
+    var dict = defaultSettingsStg
+    dict["APP_NAME"] = "{{ name }}(Stg)"
+    return dict
+}()
+
+let appSettingsPrd: SettingsDictionary = {
+    var dict = defaultSettingsPrd
+    dict["APP_NAME"] = "{{ name }}"
+    return dict
+}()
+
+let appConfigDev: Configuration = .debug(
+    name: "{{ name }}Dev",
+    settings: appSettingsDev
+)
+
+let appConfigStg: Configuration = .release(
+    name: "{{ name }}Stg",
+    settings: appSettingsStg
+)
+
+let appConfigPrd: Configuration = .release(
+    name: "{{ name }}Prd",
+    settings: appSettingsPrd
+)

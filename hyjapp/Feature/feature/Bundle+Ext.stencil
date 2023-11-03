@@ -1,0 +1,9 @@
+import Foundation
+
+extension Bundle {
+    
+    internal static var current: Bundle {
+        class __DUMMY__ { }
+        return Bundle(for: __DUMMY__.self)
+    }
+}

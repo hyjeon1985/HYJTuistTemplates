@@ -1,0 +1,27 @@
+import ProjectDescription
+
+let nameAttribute: Template.Attribute = .required("name")
+
+let template = Template(
+    description: "Feature template",
+    attributes: [
+        nameAttribute
+    ], items: [
+        .file(
+            path: "{{ name }}/\(nameAttribute)/Project.swift",
+            templatePath: "FeatureProject.stencil"
+        ),
+        .file(
+            path: "{{ name }}/\(nameAttribute)/Interfaces/\(nameAttribute)Error.swift",
+            templatePath: "FeatureError.stencil"
+        ),
+        .file(
+            path: "{{ name }}/\(nameAttribute)/Sources/Extensions/Bundle+Ext.swift",
+            templatePath: "Bundle+Ext.stencil"
+        ),
+        .file(
+            path: "{{ name }}/\(nameAttribute)/Sources/Extensions/UserDefaults+Ext.swift",
+            templatePath: "UserDefaults+Ext.stencil"
+        ),
+    ]
+)

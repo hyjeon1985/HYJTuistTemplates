@@ -1,0 +1,24 @@
+import ProjectDescription
+import ProjectDescriptionHelpers
+
+// {{ name|lowerFirstWord }} Feature Module
+let project = Project(
+    name: Feature.{{ name|lowerFirstWord }}.rawValue,
+    settings: defaultSettings,
+    targets: [
+        .feature(
+            interface: .{{ name|lowerFirstWord }},
+            dependencies: [
+                .common
+            ]
+        ),
+        .feature(
+            implementation: .{{ name|lowerFirstWord }},
+            dependencies: [
+                .common,
+                .feature(interface: .{{ name|lowerFirstWord }}),
+                .sdk(name: "UIKit", type: .framework, status: .required),
+            ]
+        )
+    ]
+)
